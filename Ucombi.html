@@ -1,150 +1,149 @@
 <!doctype html>
 <html>
-<head>
-<title>Ucombi</title>
-</head>
-<body>
-<div id="topbar">
-<h2 id="bgchange" class="noBreak"><a href="#" class="noBreak">background</a></h2>
-<h2 id="clearStore" class="noBreak"><a href="" class="noBreak">restart</a></h2>
-<div align="center" id="newSite" class="noBreak">
-<input class="cnsl" id='editurl' placeholder='URL'></input>
-<button type='submit' id='submitbutton'>Add</button></div>
-<h2 class="noBreak allups sans">how to use our site</h2>
-</div>
-<div id="bg">
-<button id="genbg">submit</button>
-<input id="bgtxt" placeholder="paste background url here"></input>
-</div>
-<div id='content'>
-</div>
-</body>
+    <head>
+        <title>Ucombi</title>
+    </head>
+    <body>
+        <div id="topbar">
+            <h2 id="bgchange" class="noBreak"><a href="#" class="noBreak">background</a></h2>
+            <h2 id="clearStore" class="noBreak"><a href="" class="noBreak">restart</a></h2>
+            <div align="center" id="newSite" class="noBreak">
+                <input class="cnsl" id='editurl' placeholder='URL'/>
+                <button type='submit' id='submitbutton'>Add</button></div>
+        </div>
+        <div id="bg">
+            <button id="genbg">submit</button>
+            <input id="bgtxt" placeholder="paste background url here"/>
+        </div>
+        <div id='content'>
+        </div>
+    </body>
 </html>
 <style type='text/css'>
-iFrame {
-border: none;
-width: 1300px;
-height: 600px;
-margin: 25px;
-}
+    iFrame {
+        border: none;
+        width: 1300px;
+        height: 600px;
+        margin: 25px;
+    }
 #bgtxt {
-width: 300px;
-border: 1px solid black;
-border-radius: 2px;
+    width: 300px;
+    border: 1px solid black;
+    border-radius: 2px;
 }
 #bg {
-background-color: lightblue;
-width: 360px;
-padding: 5px;
-border: 1px solid black;
-border-radius: 3px;
-position: relative;
-left: 70px;
-display: none;
+    background-color: lightblue;
+    width: 360px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 3px;
+    position: relative;
+    left: 70px;
+    display: none;
 }
 .title {
-position: relative;
-top: 45px;
-width: 1100px;
-margin-left: 150px;
-top: 80px;
-background-color: grey;
-opacity: 0.8;
+    position: relative;
+    top: 45px;
+    width: 1100px;
+    margin-left: 150px;
+    top: 80px;
+    background-color: grey;
+    opacity: 0.8;
 }
 #newSite input {
-width: 500px;
-float: center;
-margin: 10px 10px 10px 120px;
-padding: 5px;
+    width: 500px;
+    float: center;
+    margin: 10px 10px 10px 120px;
+    padding: 5px;
 }
 #topbar {
-background-color: #E8D464;
-opacity: 0.8;
+    background-color: #E8D464;
+    opacity: 0.8;
 }
 a.noBreak {
-margin-left: 70px;
-text-decoration: none;
-color: black;
+    margin-left: 70px;
+    text-decoration: none;
+    color: black;
 }
 body {
-margin: 0;
-background-image: url("http://designshack.net/wp-content/uploads/ds-woodsite-3.jpg");
-background-size: 1370px 706px;
-background-repeat: repeat-y;
+    margin: 0;
+    background-image: url("http://designshack.net/wp-content/uploads/ds-woodsite-3.jpg");
+    background-size: 1370px 706px;
+    background-repeat: repeat-y;
 }
 .cnsl {
-font-family: 'Lucida Console', Monaco, monospace;
+    font-family: 'Lucida Console', Monaco, monospace;
 }
 .noBreak {
-display: inline;
+    display: inline;
 }
 .sans {
-font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .allups {
-font-variant: small-caps;
-font-size: 800;
+    font-variant: small-caps;
+    font-size: 800;
 }
 </style>
 <script type='text/javascript'>
-document.getElementById("clearStore").onclick=function(){
-localStorage.clear();
-}
+    document.getElementById("clearStore").onclick=function(){
+        localStorage.clear();
+    }
 var id = 1;
 var bgstate = 0;
 var url = document.getElementById("editurl");
 var Content = document.getElementById("content");
 var deletedsrc;
 if (localStorage.getItem("background") !== null){
-document.querySelector("body").style.backgroundImage='url("'+localStorage.getItem("background")+'")';
+    document.querySelector("body").style.backgroundImage='url("'+localStorage.getItem("background")+'")';
 }
 for (var i = 1; i<=localStorage.length; i++){
-Content.innerHTML='<div class="container">\
-       <h2>\
-          <a href="http://'+localStorage.getItem(i)+'">\
-             <div class="title" align="center">'+localStorage.getItem(i).substring(7,localStorage.getItem(i).length-1)+'</div>\
-          </a>\
-       </h2>\
-       <img onclick="rem(this);" src="http://goo.gl/djVhzP" align="right" width="40px" class="delete"/>\
-       <iFrame src="'+localStorage.getItem(i)+'" align="center" frameborder="0" allowfullscreen></iFrame>\
+    Content.innerHTML='<div class="container">\
+    <h2>\
+    <a href="http://'+localStorage.getItem(i)+'">\
+    <div class="title" align="center">'+localStorage.getItem(i).substring(7,localStorage.getItem(i).length-1)+'</div>\
+    </a>\
+    </h2>\
+    <img onclick="rem(this);" src="http://goo.gl/djVhzP" align="right" width="40px" class="delete"/>\
+    <iFrame src="'+localStorage.getItem(i)+'" align="center" frameborder="0" allowfullscreen></iFrame>\
     </div>'+Content.innerHTML;
 }
 
 document.getElementById("submitbutton").onclick=function(){
-try{
-Content.innerHTML='<div class="container">\
+    try{
+        Content.innerHTML='<div class="container">\
         <h2>\
-                <div class="title" align="center"><a href="http://'+url.value+'">'+url.value+'</a></div>\
+        <div class="title" align="center"><a href="http://'+url.value+'">'+url.value+'</a></div>\
         </h2>\
         <img onclick="rem(this);" src="http://goo.gl/djVhzP" align="right" width="40px" class="delete"/>\
         <iFrame src="http://'+url.value+'" align="center" frameborder="0" allowfullscreen></iFrame>\
         </div>'+Content.innerHTML;
-localStorage.setItem(id, "http://"+url.value+"/");
-id++;
-}catch(e){
-console.log(e.message);
-}
+        localStorage.setItem(id, "http://"+url.value+"/");
+        id++;
+    }catch(e){
+        console.log(e.message);
+    }
 }
 var rem = function(thy){
-deletedsrc = thy.parentNode.querySelector("iFrame").src;
-thy.parentNode.parentNode.removeChild(thy.parentNode);
-for (var j = 1; j<=localStorage.length; j++){
-if (localStorage.getItem(j) == deletedsrc){
-localStorage.removeItem(j);
-}
-}
+    deletedsrc = thy.parentNode.querySelector("iFrame").src;
+    thy.parentNode.parentNode.removeChild(thy.parentNode);
+    for (var j = 1; j<=localStorage.length; j++){
+        if (localStorage.getItem(j) == deletedsrc){
+            localStorage.removeItem(j);
+        }
+    }
 }
 document.getElementById("bgchange").onclick=function(){
-if (bgstate == 0){
-document.getElementById("bg").style.display="block";
-bgstate = 1;
-}else{
-document.getElementById("bg").style.display="none";
-bgstate = 0;
-}
+    if (bgstate == 0){
+        document.getElementById("bg").style.display="block";
+        bgstate = 1;
+    }else{
+        document.getElementById("bg").style.display="none";
+        bgstate = 0;
+    }
 }
 document.getElementById("genbg").onclick=function(){
-document.querySelector("body").style.backgroundImage = 'url("'+document.getElementById("bgtxt").value+'")';
-localStorage.setItem("background", document.getElementById("bgtxt").value);
+    document.querySelector("body").style.backgroundImage = 'url("'+document.getElementById("bgtxt").value+'")';
+    localStorage.setItem("background", document.getElementById("bgtxt").value);
 }
 </script>
